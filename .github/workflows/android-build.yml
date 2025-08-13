@@ -22,14 +22,16 @@ jobs:
         distribution: temurin
         java-version: 17
 
-    # 3️⃣ Set up Android SDK with required components
+    # 3️⃣ Set up Android SDK with required packages
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
       with:
-        components: |
+        cmdline-tools-version: "latest"
+        packages: |
+          platform-tools
           platforms;android-34
           build-tools;34.0.0
-          platform-tools
+        accept-android-sdk-licenses: true
 
     # 4️⃣ Auto-increment versionCode/versionName based on Git commits
     - name: Auto versioning
