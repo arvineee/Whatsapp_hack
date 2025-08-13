@@ -1,0 +1,50 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.whatsapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="28" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:3:5-67
+11-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:3:22-64
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:4:5-80
+12-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:4:22-78
+13
+14    <application
+14-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:5:5-18:19
+15        android:allowBackup="true"
+15-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:6:9-35
+16        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+16-->[com.android.support:support-compat:28.0.0] /data/data/com.termux/files/home/.gradle/caches/9.0.0/transforms/1f204ea8c8f681cd27135e01feaeaba6/transformed/support-compat-28.0.0/AndroidManifest.xml:22:18-91
+17        android:debuggable="true"
+18        android:extractNativeLibs="true"
+19        android:icon="@mipmap/ic_launcher"
+19-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:7:9-43
+20        android:label="@string/app_name"
+20-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:8:9-41
+21        android:screenOrientation="landscape"
+21-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:10:9-46
+22        android:supportsRtl="true" >
+22-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:9:9-35
+23        <activity android:name="com.whatshack.MainActivity" >
+23-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:12:9-17:20
+23-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:12:19-60
+24            <intent-filter>
+24-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:13:14-16:30
+25                <category android:name="android.intent.category.LAUNCHER" />
+25-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:14:17-76
+25-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:14:27-74
+26
+27                <action android:name="android.intent.action.MAIN" />
+27-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:15:17-68
+27-->/data/data/com.termux/files/home/WhatsappHack/app/app/src/main/AndroidManifest.xml:15:25-66
+28            </intent-filter>
+29        </activity>
+30    </application>
+31
+32</manifest>
