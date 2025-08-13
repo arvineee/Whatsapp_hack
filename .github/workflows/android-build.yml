@@ -22,7 +22,7 @@ jobs:
         distribution: temurin
         java-version: 17
 
-    # 3️⃣ Set up Android SDK and Build Tools
+    # 3️⃣ Set up Android SDK & Build Tools
     - name: Set up Android SDK
       uses: android-actions/setup-android@v2
       with:
@@ -33,7 +33,7 @@ jobs:
     - name: Accept SDK licenses
       run: yes | sdkmanager --licenses
 
-    # 5️⃣ Auto-increment versionCode and versionName (optional)
+    # 5️⃣ Auto versioning using Git commits
     - name: Auto versioning
       run: |
         echo "versionCode=$(git rev-list --count HEAD)" >> gradle.properties
@@ -51,16 +51,16 @@ jobs:
         KEY_ALIAS_PASSWORD: ${{ secrets.KEY_ALIAS_PASSWORD }}
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
-    # 8️⃣ Upload Debug APK artifact
+    # 8️⃣ Upload Debug APK artifact (v4)
     - name: Upload Debug APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: WhatsappHack-debug.apk
         path: app/build/outputs/apk/debug/app-debug.apk
 
-    # 9️⃣ Upload Release APK artifact
+    # 9️⃣ Upload Release APK artifact (v4)
     - name: Upload Release APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: WhatsappHack-release.apk
         path: app/build/outputs/apk/release/app-release.apk
