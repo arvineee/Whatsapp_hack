@@ -1,27 +1,37 @@
-apply plugin: 'com.android.application'
-
 android {
-    namespace "com.example.whatsapp" // <-- Add this line
-    compileSdkVersion 28
+    compileSdk 34
+    namespace "com.whatshack"
+
+    // Automatically increment versionCode
+    def commitCount = 0
+    try {
+        commitCount = "git rev-list --count HEAD".execute([], rootDir).text.trim().toInteger()
+    } catch (Exception e) {
+        commitCount = 1
+    }
 
     defaultConfig {
-        applicationId "com.example.whatsapp" // Keep your original package name
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.whatshack"
+        minSdk 21
+        targetSdk 34
+        versionCode commitCount
+        versionName "1.0.${commitCount}"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore/whatsapphack.keystore")
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_ALIAS_PASSWORD")
+        }
     }
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
         }
     }
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
 }

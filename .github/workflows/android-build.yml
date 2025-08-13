@@ -23,17 +23,21 @@ jobs:
     - name: Set up Android SDK
       uses: android-actions/setup-android@v2
       with:
-        api-level: 28
+        api-level: 34
         build-tools: 34.0.0
 
     - name: Accept SDK licenses
       run: yes | sdkmanager --licenses
 
-    - name: Build APK
-      run: ./gradlew assembleDebug
+    - name: Build Release APK
+      run: ./gradlew assembleRelease
+      env:
+        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        KEY_ALIAS_PASSWORD: ${{ secrets.KEY_ALIAS_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
-    - name: Upload APK
+    - name: Upload Release APK
       uses: actions/upload-artifact@v3
       with:
-        name: WhatsappHack-debug.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: WhatsappHack-release.apk
+        path: app/build/outputs/apk/release/app-release.apk
