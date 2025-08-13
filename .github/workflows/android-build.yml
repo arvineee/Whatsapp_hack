@@ -11,24 +11,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Checkout the repository
     - name: Checkout repo
       uses: actions/checkout@v3
 
+    # 2️⃣ Set up JDK 17
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         distribution: temurin
         java-version: 17
 
+    # 3️⃣ Set up Android SDK and Build Tools
     - name: Set up Android SDK
       uses: android-actions/setup-android@v2
       with:
         api-level: 34
         build-tools: 34.0.0
 
+    # 4️⃣ Accept Android SDK licenses
     - name: Accept SDK licenses
       run: yes | sdkmanager --licenses
 
+    # 5️⃣ Auto-increment versionCode and versionName (optional)
+    - name: Auto versioning
+      run: |
+        echo "versionCode=$(git rev-list --count HEAD)" >> gradle.properties
+        echo "versionName=1.0.$(git rev-list --count HEAD)" >> gradle.properties
+
+    # 6️⃣ Build Debug APK
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+
+    # 7️⃣ Build Release APK
     - name: Build Release APK
       run: ./gradlew assembleRelease
       env:
@@ -36,6 +51,14 @@ jobs:
         KEY_ALIAS_PASSWORD: ${{ secrets.KEY_ALIAS_PASSWORD }}
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
+    # 8️⃣ Upload Debug APK artifact
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: WhatsappHack-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
+
+    # 9️⃣ Upload Release APK artifact
     - name: Upload Release APK
       uses: actions/upload-artifact@v3
       with:
