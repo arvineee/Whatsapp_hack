@@ -6,13 +6,17 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  ANDROID_HOME: ${{ runner.workspace }}/android-sdk
+  PATH: ${{ runner.workspace }}/android-sdk/platform-tools:${{ runner.workspace }}/android-sdk/cmdline-tools/latest/bin:${PATH}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # 1️⃣ Checkout repository
-    - name: Checkout repo
+    # 1️⃣ Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     # 2️⃣ Set up JDK 17
@@ -22,7 +26,7 @@ jobs:
         distribution: temurin
         java-version: 17
 
-    # 3️⃣ Set up Android SDK with required packages
+    # 3️⃣ Install Android SDK components and accept licenses
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
       with:
@@ -33,7 +37,7 @@ jobs:
           build-tools;34.0.0
         accept-android-sdk-licenses: true
 
-    # 4️⃣ Auto-increment versionCode/versionName based on Git commits
+    # 4️⃣ Auto versioning
     - name: Auto versioning
       run: |
         echo "versionCode=$(git rev-list --count HEAD)" >> gradle.properties
